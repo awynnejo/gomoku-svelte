@@ -6,15 +6,25 @@
  import Game from '../components/Game.svelte'
  import Games from '../components/Games.svelte'
  import GameLog from '../components/GameLog.svelte'
+ import { login_store } from './auth.ts'
 
 </script>
 
 <nav>
-	<a href="/">Gomoku</a>
+{#if $login_store == null}
 	<a href="/#/Login">Login</a>
+	<a href="/">Gomoku</a>
+	<a href="/#/Login">Game</a>
+	<a href="/#/Login">Games</a>
+	<a href="/#/Login">GameLog</a>
+{:else}
+	<a href="/#/Login">Logout</a>
+	<a href="/">Gomoku</a>
 	<a href="/#/Game">Game</a>
 	<a href="/#/Games">Games</a>
 	<a href="/#/GameLog">GameLog</a>
+
+{/if}
 
 
 </nav>

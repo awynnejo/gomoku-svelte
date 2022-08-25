@@ -2,7 +2,10 @@
 
 import { writable } from 'svelte/store';
 
-export const store = writable(null);
+const storedLogin = localStorage.getItem("login");
+
+export const login_store = writable(storedLogin);
+login_store.subscribe(val => localStorage.setItem("store", val));
 
 export const database = [
      {
