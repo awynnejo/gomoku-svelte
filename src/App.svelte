@@ -6,6 +6,7 @@
  import Game from '../components/Game.svelte'
  import Games from '../components/Games.svelte'
  import GameLog from '../components/GameLog.svelte'
+
 </script>
 
 <nav>
@@ -14,6 +15,7 @@
 	<a href="/#/Game">Game</a>
 	<a href="/#/Games">Games</a>
 	<a href="/#/GameLog">GameLog</a>
+
 
 </nav>
 
