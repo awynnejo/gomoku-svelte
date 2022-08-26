@@ -1,41 +1,80 @@
 <script lang="ts">
 	export let name: string;
  import Router, {location, link} from 'svelte-spa-router';
+ import { wrap } from 'svelte-spa-router/wrap';
  import Home from '../components/Home.svelte'
  import Login from '../components/Login.svelte'
  import Game from '../components/Game.svelte'
  import Games from '../components/Games.svelte'
  import GameLog from '../components/GameLog.svelte'
- import { login_store } from './auth'
+ import { login_store } from './stores'
+
+ const routes: any = {
+				'/': wrap({
+					component: Home,
+					conditions: [(detail) => {
+						return true
+					}]
+					}),
+				'/Login': wrap({
+					component: Login,
+					conditions: [(detail) => {
+						return true
+					}]
+					}),
+				'/Game': wrap({
+					component: Game,
+					conditions: [(detail) => {
+						if ($login_store == null) {
+							return false
+						}
+						else {
+							return true
+						}
+					}]
+					}),
+				'/Games': wrap({
+					component: Games,
+					conditions: [(detail) => {
+						if ($login_store == null) {
+							return false
+						}
+						else {
+							return true
+						}
+					}]
+					}),
+				'/GameLog': wrap({
+					component: GameLog,
+					conditions: [(detail) => {
+						if ($login_store == null) {
+							return false
+						}
+						else {
+							return true
+						}
+					}]
+					})
+			}
+
+
 
 </script>
 
 <nav>
-{#if $login_store == null}
+	<a href="/">Gomoku</a>
 	<a href="/#/Login">Login</a>
-	<a href="/">Gomoku</a>
-	<a href="/#/Login">Game</a>
-	<a href="/#/Login">Games</a>
-	<a href="/#/Login">GameLog</a>
-{:else}
-	<a href="/#/Login">Logout</a>
-	<a href="/">Gomoku</a>
 	<a href="/#/Game">Game</a>
 	<a href="/#/Games">Games</a>
 	<a href="/#/GameLog">GameLog</a>
-
-{/if}
-
-
+	<br>
+	{#if $login_store != null}
+	<h3> User: {JSON.stringify($login_store.username, null, 2)}</h3>
+	{/if}
 </nav>
 
-<Router routes={{
-			   '/':Home,
-			   '/Login':Login,
-			   '/Game':Game,
-			   '/Games':Games,
-			   '/GameLog':GameLog
-			   }}/>
+<Router {routes}/>
+
 
 <style>
 	main {
