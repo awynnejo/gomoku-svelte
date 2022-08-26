@@ -1,7 +1,7 @@
-<script>
-    import { link, push, pop, replace } from 'svelte-spa-router'
-    import { useForm, validators,  Hint, required } from "svelte-use-form"
-    import { login_store , database } from '../src/auth.ts'
+<script lang='ts'>
+    import { link, push, pop, replace } from 'svelte-spa-router';
+    import { useForm, validators,  Hint, required } from "svelte-use-form";
+    import { login_store , database } from '../src/auth';
 
 
  const form = useForm();

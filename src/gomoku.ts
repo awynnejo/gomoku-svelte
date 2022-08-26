@@ -1,3 +1,4 @@
+
 type TILE = "VACANT" | "BLACK" | "WHITE"
 type TURN = "BLACK" | "WHITE"
 type COORDINATES = {
@@ -86,7 +87,7 @@ class Game {
     }
 }
 
-class GameCanvas {
+export class GameCanvas {
     // draws game and updates game state
     game_size: number
     game: Game
@@ -116,7 +117,7 @@ class GameCanvas {
                 this.updateGameState()
             }
         }, false)
-        window.addEventListener("resize", this.updateTileSize()!, false)
+        //window.addEventListener("resize", this.updateTileSize()!, false)
         this.drawBoard()
     }
 
@@ -183,7 +184,6 @@ class GameCanvas {
     }
 }
 
-export default GameCanvas
 //let newgame_button = <HTMLButtonElement>document.getElementById('btn_new_game')
 //let game_size_input = <HTMLInputElement>document.getElementById('inp_board_size')
 //let gc = new GameCanvas(parseInt(game_size_input.value))

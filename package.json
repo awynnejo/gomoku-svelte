@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "sirv-cli": "^2.0.0",
+    "svelte-canvas": "^0.7.1",
     "svelte-spa-router": "^3.3.0",
     "svelte-use-form": "^2.4.3"
   }

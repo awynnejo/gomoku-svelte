@@ -6,7 +6,7 @@
  import Game from '../components/Game.svelte'
  import Games from '../components/Games.svelte'
  import GameLog from '../components/GameLog.svelte'
- import { login_store } from './auth.ts'
+ import { login_store } from './auth'
 
 </script>
 

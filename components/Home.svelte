@@ -1,6 +1,6 @@
-<script>
-import { link, push, pop, replace } from 'svelte-spa-router'
-import { login_store , database } from '../src/auth.ts'
+<script lang='ts'>
+import { link, push, pop, replace } from 'svelte-spa-router';
+import { login_store , database } from '../src/auth';
 
 let boardsize = 10
 
