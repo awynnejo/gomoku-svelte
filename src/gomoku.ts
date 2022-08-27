@@ -59,18 +59,11 @@ export class Game {
         }
         let diag_bl_tr = [this.board[coord.x][coord.y]] // generate diagonal bottom left to top right
         for (let x = coord.x + 1, y = coord.y - 1; x < this.size && y >= 0; x++, y--){
-            console.log("TR")
-            console.log("x: " + x + " y: " + y)
             diag_bl_tr.push(this.board[x][y]) //append top right
         }
         for (let x = coord.x - 1, y = coord.y + 1; x >= 0 && y < this.size; x--, y++){
-            console.log("BL")
-            console.log("x: " + x + " y: " + y)
             diag_bl_tr.unshift(this.board[x][y]) //prepend bottom left
         }
-        console.log('diag_bl_tr')
-        console.log(diag_bl_tr)
-
         if (streakLength(this.turn, column) === 5){
             this.gameover = true
         } else if (streakLength(this.turn, row) ===5){
@@ -85,6 +78,8 @@ export class Game {
 
     placeTile(x: number, y: number){
         this.board[x][y] = this.turn
+        this.history.push(this.board)
+        console.log(this.history)
     }
 
     toggleTurn(){

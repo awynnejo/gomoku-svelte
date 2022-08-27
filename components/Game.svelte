@@ -9,8 +9,13 @@ onMount( () => {
     gc = new GameCanvas($gamesize_store, canvasElement)
  });
 
+function restart(){
+     console.log('restarting')
+     gc.resetGame()
+ }
+
 </script>
 <h1>{$gamestate_store}</h1>
 <canvas bind:this={canvasElement}/>
-<button >Restart</button>
+<button on:click={restart}>Restart</button>
 <button >Leave</button>
