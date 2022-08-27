@@ -14,7 +14,7 @@ export const gamestate_store = writable(null);
 // Create store for game
 export const game_store = writable(null);
 // Create store for game history
-export const gamehistory_store = writable(null);
+export const gamehistory_store = writable([]);
 
 export const database = [
      {

@@ -9,6 +9,10 @@ type COORDINATES = {
     x: number
     y: number
 }
+type HISTORY = {
+    date: Date
+    board: BOARD
+}
 
 
 
@@ -18,7 +22,7 @@ export class Game {
     turn: TURN
     size: number
     gameover: boolean
-    history: BOARD[]
+    history: HISTORY[]
 
     constructor(size: number){
         this.board = new Array(size)
@@ -78,7 +82,8 @@ export class Game {
 
     placeTile(x: number, y: number){
         this.board[x][y] = this.turn
-        this.history.push(this.board)
+        const now = new Date();
+        this.history.push({date: now, board: this.board})
         console.log(this.history)
     }
 

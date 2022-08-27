@@ -44,7 +44,7 @@
 						}
 					}]
 					}),
-				'/GameLog': wrap({
+				'/GameLog:id': wrap({
 					component: GameLog,
 					conditions: [(detail) => {
 						if ($login_store == null) {
@@ -62,14 +62,14 @@
 </script>
 
 <nav>
-	<a href="/">Gomoku</a>
-	<a href="/#/Login">Login</a>
-	<a href="/#/Game">Game</a>
-	<a href="/#/Games">Games</a>
-	<a href="/#/GameLog">GameLog</a>
+	<h1><a href="/" use:link>Gomoku</a></h1>
+	{#if $login_store == null}
+	<a href="/Login" use:link>Login</a>
+	{/if}
 	<br>
 	{#if $login_store != null}
-	<h3> User: {JSON.stringify($login_store.username, null, 2)}</h3>
+		<h3> logged in as {$login_store.username} (<a href="/Login" use:link>logout</a>)</h3>
+		<a href="/Games" use:link>Previous Games</a>
 	{/if}
 </nav>
 

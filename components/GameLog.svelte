@@ -1,4 +1,9 @@
 <script>
-import { login_store , database } from '../src/stores';
+import { login_store , gamehistory_store , database } from '../src/stores';
+function back(){
+    push('/games')
+ }
 </script>
-<h1>Game log</h1>
+
+
+<button on:click={back}>Back</button>

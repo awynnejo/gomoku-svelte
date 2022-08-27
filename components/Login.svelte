@@ -22,7 +22,7 @@ function login() {
      }
      else {
          error = 'No matching username and password'
-         console.log('No matching username and password')
+         alert(error)
      }
  }
 
@@ -52,6 +52,5 @@ function logout(){
 </form>
 
 {:else}
-<h2> You are logged in as {JSON.stringify($login_store.username, null, 2)}</h2>
 <button on:click={logout}>Logout</button>
 {/if}
