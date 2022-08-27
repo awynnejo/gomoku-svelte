@@ -1,5 +1,9 @@
 
+import { gamestate_store } from '../src/stores';
+
+
 type TILE = "VACANT" | "BLACK" | "WHITE"
+type BOARD = TILE[][]
 type TURN = "BLACK" | "WHITE"
 type COORDINATES = {
     x: number
@@ -10,10 +14,11 @@ type COORDINATES = {
 
 export class Game {
     // stores game state and logic
-    board: TILE[][]
+    board: BOARD
     turn: TURN
     size: number
     gameover: boolean
+    history: BOARD[]
 
     constructor(size: number){
         this.board = new Array(size)
@@ -22,6 +27,7 @@ export class Game {
         this.turn = "BLACK"
         this.size = size
         this.gameover = false
+        this.history = []
     }
 
     checkWin(coord: COORDINATES){
@@ -97,11 +103,11 @@ export class GameCanvas {
     game_state: string
 
     constructor(game_size: number = 10,
-               canvas: HTMLCanvasElement,
-               game_state: string){
+               canvas: HTMLCanvasElement
+               ){
         this.game_size = game_size
         this.game = new Game(this.game_size)
-        this.game_state = game_state
+        this.game_state = this.game.turn + "'S TURN'"
         this.updateGameState()
         this.canvas = canvas
         this.canvas.width = 800
@@ -119,7 +125,6 @@ export class GameCanvas {
                 this.updateGameState()
             }
         }, false)
-        window.addEventListener("resize", this.updateTileSize()!, false)
         this.drawBoard()
     }
 
@@ -136,6 +141,7 @@ export class GameCanvas {
         } else {
             this.game_state = "GAME OVER - " + this.game.turn + " WINS"
         }
+        gamestate_store.set(this.game_state)
     }
 
     drawBoard(){
