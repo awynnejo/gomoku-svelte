@@ -8,7 +8,7 @@ type COORDINATES = {
 
 
 
-class Game {
+export class Game {
     // stores game state and logic
     board: TILE[][]
     turn: TURN
@@ -94,14 +94,16 @@ export class GameCanvas {
     canvas: HTMLCanvasElement
     tile_size: number
     ctx: CanvasRenderingContext2D
-    game_state: HTMLHeadingElement
+    game_state: string
 
-    constructor(game_size: number = 10){
+    constructor(game_size: number = 10,
+               canvas: HTMLCanvasElement,
+               game_state: string){
         this.game_size = game_size
         this.game = new Game(this.game_size)
-        this.game_state = <HTMLHeadingElement>document.getElementById('game_state')
+        this.game_state = game_state
         this.updateGameState()
-        this.canvas = <HTMLCanvasElement>document.getElementById('canvas')
+        this.canvas = canvas
         this.canvas.width = 800
         this.canvas.height = 800
         this.tile_size = this.canvas.getBoundingClientRect().width / this.game_size
@@ -117,7 +119,7 @@ export class GameCanvas {
                 this.updateGameState()
             }
         }, false)
-        //window.addEventListener("resize", this.updateTileSize()!, false)
+        window.addEventListener("resize", this.updateTileSize()!, false)
         this.drawBoard()
     }
 
@@ -127,12 +129,12 @@ export class GameCanvas {
 
     updateGameState(){
         if (this.game.board.some(row => row.includes("VACANT")) === false){
-            this.game_state.innerHTML = "GAME OVER - DRAW"
+            this.game_state = "GAME OVER - DRAW"
         }
         else if (this.game.gameover === false){
-            this.game_state.innerHTML = this.game.turn + "'S TURN"
+            this.game_state = this.game.turn + "'S TURN"
         } else {
-            this.game_state.innerHTML = "GAME OVER - " + this.game.turn + " WINS"
+            this.game_state = "GAME OVER - " + this.game.turn + " WINS"
         }
     }
 
@@ -183,6 +185,7 @@ export class GameCanvas {
 
     }
 }
+
 
 //let newgame_button = <HTMLButtonElement>document.getElementById('btn_new_game')
 //let game_size_input = <HTMLInputElement>document.getElementById('inp_board_size')
