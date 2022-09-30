@@ -4,6 +4,7 @@
  import { wrap } from 'svelte-spa-router/wrap';
  import Home from '../components/Home.svelte'
  import Login from '../components/Login.svelte'
+ import Signup from '../components/Signup.svelte'
  import Game from '../components/Game.svelte'
  import Games from '../components/Games.svelte'
  import GameLog from '../components/GameLog.svelte'
@@ -18,6 +19,12 @@
 					}),
 				'/Login': wrap({
 					component: Login,
+					conditions: [(detail) => {
+						return true
+					}]
+					}),
+				'/Signup': wrap({
+					component: Signup,
 					conditions: [(detail) => {
 						return true
 					}]

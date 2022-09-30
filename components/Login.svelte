@@ -28,7 +28,11 @@ function login() {
 
 function logout(){
      $login_store = null
-}
+ }
+
+ function signup(){
+     push('/Signup')
+ }
 
 
 </script>
@@ -49,6 +53,8 @@ function logout(){
         This field is required
     </Hint>
     <button type='submit' disabled={!$form.valid} on:click={login}>Login</button>
+    <h1>No account?</h1>
+    <button on:click={signup}>Sign up</button>
 </form>
 
 {:else}

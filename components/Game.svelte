@@ -23,7 +23,7 @@ function restart(){
          $gamehistory_store.push({history: gc.game.history,
                                  outcome: $gamestate_store,
                                 date: gc.game.history.at(-1).date,
-                                 id: NewUniqueId()} )
+                                 user: $login_store.username} )
          push('/games')
      }
  }
